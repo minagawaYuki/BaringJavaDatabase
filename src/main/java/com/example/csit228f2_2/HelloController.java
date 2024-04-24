@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class HelloController {
@@ -21,7 +22,11 @@ public class HelloController {
     @FXML
     private Label welcomeText;
     @FXML
+    private Button btnLogout;
+    @FXML
     private Button btnRegister;
+    @FXML
+    private Button btnNotes;
     @FXML
     private HBox hboxRegister;
     @FXML
@@ -70,6 +75,18 @@ public class HelloController {
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(HelloApplication.scene);
+        stage.show();
+    }
+    @FXML
+    private void onBtnLogoutClick(ActionEvent event) {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(HelloApplication.scene);
+        stage.show();
+    }
+    @FXML
+    private void onBtnNotesClick(ActionEvent event) throws SQLException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(Scenes.getMainScene());
         stage.show();
     }
 

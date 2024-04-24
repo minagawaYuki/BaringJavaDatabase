@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
     public static List<User> users;
@@ -41,6 +44,9 @@ public class HelloApplication extends Application {
         users.add(new User("tsgtest", "asdasd","123456"));
         users.add(new User("jayvince", "asdaasd","secret"));
         users.add(new User("russselll", "asdaasd","palma"));
+
+        CRUD.createUserTable();
+        CRUD.createNotesTable();
 
         AnchorPane pnMain = new AnchorPane();
         GridPane grid = new GridPane();
@@ -110,6 +116,13 @@ public class HelloApplication extends Application {
         actionTarget.setFont(Font.font(30));
         grid.add(actionTarget, 1, 6);
 
+        Button btnRegister = new Button("Register");
+        btnRegister.setFont(Font.font(45));
+        HBox hbRegister = new HBox();
+        hbRegister.getChildren().add(btnRegister);
+        hbRegister.setAlignment(Pos.CENTER);
+        grid.add(hbRegister, 0, 4, 2, 1);
+
         btnSignIn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -123,7 +136,7 @@ public class HelloApplication extends Application {
                     throw new RuntimeException(e);
                 }
                 if(CRUD.isValidLogin(user1)) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
                     try {
                         Scene scene = new Scene(loader.load());
                         stage.setScene(scene);
@@ -137,6 +150,22 @@ public class HelloApplication extends Application {
                     actionTarget.setOpacity(1);
                 }
 
+            }
+        });
+
+        btnRegister.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("register.fxml")));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
         });
 

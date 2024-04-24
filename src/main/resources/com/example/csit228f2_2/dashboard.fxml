@@ -15,7 +15,7 @@
                      <HBox.margin>
                         <Insets right="15.0" top="15.0" />
                      </HBox.margin></Label>
-                  <Button mnemonicParsing="false" text="Logout">
+                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onBtnLogoutClick" text="Logout">
                      <HBox.margin>
                         <Insets right="15.0" top="12.0" />
                      </HBox.margin>
@@ -29,7 +29,7 @@
                         <Font size="29.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" text="Create Note" />
+                  <Button fx:id="btnNotes" mnemonicParsing="false" onAction="#onBtnNotesClick" text="Create Note" />
                </children>
             </VBox>
          </children></VBox>
