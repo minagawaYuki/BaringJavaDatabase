@@ -6,14 +6,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
@@ -23,12 +24,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelloApplication extends Application {
     public static List<User> users;
+    public static Scene scene;
     public static void main(String[] args) {
         launch();
     }
@@ -37,9 +38,9 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws Exception {
         users = new ArrayList<>();
         // LOAD USERS
-        users.add(new User("tsgtest", "123456"));
-        users.add(new User("jayvince", "secret"));
-        users.add(new User("russselll", "palma"));
+        users.add(new User("tsgtest", "asdasd","123456"));
+        users.add(new User("jayvince", "asdaasd","secret"));
+        users.add(new User("russselll", "asdaasd","palma"));
 
         AnchorPane pnMain = new AnchorPane();
         GridPane grid = new GridPane();
@@ -114,20 +115,28 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent actionEvent) {
                 String username = tfUsername.getText();
                 String password = pfPassword.getText();
-                for (User user : users) {
-                    if (username.equals(user.username) && password.equals(user.password)) {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-                        try {
-                            Scene scene = new Scene(loader.load());
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                String email = "asdadadd";
+                User user1 = null;
+                try {
+                    user1 = new User(username, email, password);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                if(CRUD.isValidLogin(user1)) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+                    try {
+                        Scene scene = new Scene(loader.load());
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
-                actionTarget.setText("Invalid username/password");
-                actionTarget.setOpacity(1);
+                else {
+                    actionTarget.setText("Invalid username/password");
+                    actionTarget.setOpacity(1);
+                }
+
             }
         });
 
@@ -141,7 +150,7 @@ public class HelloApplication extends Application {
         pfPassword.setOnKeyTyped(fieldChange);
 
 
-        Scene scene = new Scene(pnMain, 700, 560);
+        scene = new Scene(pnMain, 700, 560);
         stage.setScene(scene);
         stage.show();
     }

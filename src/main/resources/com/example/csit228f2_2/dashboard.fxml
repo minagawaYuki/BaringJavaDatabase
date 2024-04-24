@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csit228f2_2.HelloController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="108.0" text="Label" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets right="15.0" top="15.0" />
+                     </HBox.margin></Label>
+                  <Button mnemonicParsing="false" text="Logout">
+                     <HBox.margin>
+                        <Insets right="15.0" top="12.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Notes">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Create Note" />
+               </children>
+            </VBox>
+         </children></VBox>
+   </children>
+</AnchorPane>
